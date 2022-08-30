@@ -26,6 +26,9 @@ return new class extends Migration
             $table->string('peso')->default('...');
             $table->string('altura')->default('...');
 
+            $table->string('pontos_de_vida');
+            $table->string('sanidade')->default(0); //define o seu nivel de sanidade, ao chegar a zero, o jogador entra em estado de choque, ou fica louco propriamente dito.
+
             //atributos fisicos
             $table->string('forca')->default(0);
             $table->string('destreza')->default(0);
@@ -79,7 +82,6 @@ return new class extends Migration
             $table->string('autocontrole')->default(0); //após surtos, quando a sanidade chega a zero, é necessário rolar autocontrole.
             $table->string('coragem')->default(0); //usado para testes de perca de sanidade, ou situações de intimidação.
             $table->string('humanidade')->default(0); //define o quão distante de sua humanidade ele está, ele atributo diminui conforme o jogador pratica atos horrendos e crueis contra outros.
-            $table->string('sanidade')->default(0); //define o seu nivel de sanidade, ao chegar a zero, o jogador entra em estado de choque, ou fica louco propriamente dito.
 
             //descrição do personagem
             $table->text('descricao_do_personagem')->default('Eu me chamo... Tenho 20 anos... Sou isso... Sou aquilo...');
