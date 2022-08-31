@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->string('character_image')->default('...');
+            $table->string('character_image')->nullable();
             $table->string('nome')->default('...');
             $table->string('jogador')->default('...');
             $table->string('ocupacao')->default('...');
@@ -84,7 +84,7 @@ return new class extends Migration
             $table->string('humanidade')->default(0); //define o quão distante de sua humanidade ele está, ele atributo diminui conforme o jogador pratica atos horrendos e crueis contra outros.
 
             //descrição do personagem
-            $table->text('descricao_do_personagem')->default('Eu me chamo... Tenho 20 anos... Sou isso... Sou aquilo...');
+            $table->string('descricao_do_personagem')->default('Eu me chamo... Tenho 20 anos... Sou isso... Sou aquilo...');
 
             $table->timestamps();
         });
