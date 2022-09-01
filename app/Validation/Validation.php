@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Hash;
 
 class Validation{
 
-    public static function register($request, $data){
+    public static function register($request){
 
         $rules = [
             'name' => 'required',
@@ -44,6 +44,36 @@ class Validation{
             $response['error'] = $validator->messages();
             return $response['error'];
         }
+    }
+
+    public static function login($request){
+
+        $rules = [
+            'email' => 'required',
+            'password' => 'required'
+        ];
+    
+        $messages = [
+            'email.required' => 'Necessário um e-mail para login.',
+            'password.required' => 'Necessário uma senha para login.'
+        ];
+        
+        $validator = Validator::make($request->all(), $rules, $messages);
+
+        if($validator->fails()){
+
+            $response['error'] = $validator->messages();
+            return $response;
+        }
+
+        $user = User::where('email', $request->email)->first();
+        
+        if(!$user || !Hash::check($request->password, $user->password)){
+
+            $response['error'] = 'E-mail e/ou senha inválidos.';
+            return $response;
+        }
+
     }
 
 }

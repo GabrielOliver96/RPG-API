@@ -1,8 +1,8 @@
 <?php
 
-namespace App\JwtAuth;
+namespace App\Jwt;
 
-class JwtAuth{
+class Jwt{
 
     private $secret;
 
@@ -33,6 +33,12 @@ class JwtAuth{
         $jwt = $headerBase64UrlEncode.'.'.$payloadBase64UrlEncode.'.'.$signatureBase64UrlEncode;
 
         return $jwt;
+    }
+
+    public function validateToken($token){
+
+        $splitToken = explode('.', $token);
+
     }
 
 }
