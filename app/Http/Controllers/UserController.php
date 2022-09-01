@@ -40,7 +40,7 @@ class UserController extends Controller
     public function login(Request $request){
 
         $validation = Validation::login($request);
-        //dd($validation);
+        
         if($validation != null){
             return $validation;
         }
