@@ -13,37 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('characters', function (Blueprint $table) {
+        Schema::create('character_skills', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->string('character_image')->nullable();
-            $table->string('nome')->default('...');
-            $table->string('jogador')->default('...');
-            $table->string('ocupacao')->default('...');
-            $table->string('idade')->default('...');
-            $table->string('sexo')->default('...');
-            $table->string('peso')->default('...');
-            $table->string('altura')->default('...');
-
-            $table->string('pontos_de_vida');
-            $table->string('sanidade')->default(0); //define o seu nivel de sanidade, ao chegar a zero, o jogador entra em estado de choque, ou fica louco propriamente dito.
-
-            //atributos fisicos
-            $table->string('forca')->default(0);
-            $table->string('destreza')->default(0);
-            $table->string('agilidade')->default(0);
-
-            //atributos sociais
-            $table->string('carisma')->default(0);
-            $table->string('manipulacao')->default(0);
-            $table->string('aparencia')->default(0);
-
-            //atributos mentais
-            $table->string('percepcao')->default(0);
-            $table->string('inteligencia')->default(0);
-            $table->string('raciocinio')->default(0);
-
+            $table->unsignedBigInteger('character_id');
+            $table->foreign('character_id')->references('id')->on('character_informations');
+            
             //pericias
             $table->string('prontidao')->default(0);
             $table->string('esporte')->default(0);
@@ -77,15 +51,6 @@ return new class extends Migration
             //cada ponto adicionado inicialmente no jogo, é liberado um conhecimento cientifico caso jogador queira adicionar.
             $table->string('ciencia')->default(0);
 
-            //virtudes
-            $table->string('consciencia')->default(0); //ao tentar realizar algo eticamente questionavel, é necessário uma rolagem. 
-            $table->string('autocontrole')->default(0); //após surtos, quando a sanidade chega a zero, é necessário rolar autocontrole.
-            $table->string('coragem')->default(0); //usado para testes de perca de sanidade, ou situações de intimidação.
-            $table->string('humanidade')->default(0); //define o quão distante de sua humanidade ele está, ele atributo diminui conforme o jogador pratica atos horrendos e crueis contra outros.
-
-            //descrição do personagem
-            $table->string('descricao_do_personagem')->default('Eu me chamo... Tenho 20 anos... Sou isso... Sou aquilo...');
-
             $table->timestamps();
         });
     }
@@ -97,6 +62,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('characters');
+        Schema::dropIfExists('character_skills');
     }
 };

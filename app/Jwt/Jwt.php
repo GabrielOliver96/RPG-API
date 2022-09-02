@@ -39,6 +39,12 @@ class Jwt{
 
         $splitToken = explode('.', $token);
 
+        if(count($splitToken) == 3){
+
+            $signature = hash_hmac("sha256", $splitToken[0].'.'.$splitToken[1], $this->secret, true);
+        }
+        
+
     }
 
 }

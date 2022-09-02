@@ -5,30 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Character extends Model
+class CharacterSkills extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'user_id',
-        'nome',
-        'jogador',
-        'ocupacao',
-        'idade',
-        'sexo',
-        'peso',
-        'altura',
-        'pontos_de_vida',
-        'sanidade',
-        'forca',
-        'destreza',
-        'agilidade',
-        'carisma',
-        'manipulacao',
-        'aparencia',
-        'percepcao',
-        'inteligencia',
-        'raciocinio',
         'prontidao',
         'esporte',
         'briga',
@@ -55,11 +36,6 @@ class Character extends Model
         'idioma',
         'medicina',
         'ocultismo',
-        'ciencia',
-        'consciencia',
-        'autocontrole',
-        'coragem',
-        'humanidade',
-        'descricao_do_personagem',
+        'ciencia'
     ];
 }
