@@ -35,16 +35,26 @@ class Jwt{
         return $jwt;
     }
 
-    public function validateToken($token){
+    public function validateJwt($token){
 
         $splitToken = explode('.', $token);
 
         if(count($splitToken) == 3){
 
             $signature = hash_hmac("sha256", $splitToken[0].'.'.$splitToken[1], $this->secret, true);
+            $signatureBase64UrlEncode = $this->base64url_encode($signature);
+
+            if($splitToken[2] == $signatureBase64UrlEncode){
+
+                $response = json_decode($this->base64url_decode($splitToken[1]));
+
+                return $response;
+            }
+
+            return false;
         }
         
-
+        return false;
     }
 
 }

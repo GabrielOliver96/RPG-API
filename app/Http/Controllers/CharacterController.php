@@ -3,13 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
+use App\Models\CharacterInformations;
+use App\Validation\Validation;
 
 class CharacterController extends Controller
 {
     
-    public function createCharacter(Request $request){
+    public function createCharacterInformations(Request $request){
 
-        dd($request->all());
+        return 'Success';
 
     }
 
