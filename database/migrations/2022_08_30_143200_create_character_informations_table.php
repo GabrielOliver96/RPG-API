@@ -27,7 +27,7 @@ return new class extends Migration
             $table->string('altura')->default('...');
 
             //descrição do personagem
-            $table->string('descricao_do_personagem')->default('Eu me chamo... Tenho 20 anos... Sou isso... Sou aquilo...');
+            $table->string('descricao_do_personagem', 500)->default('Eu me chamo... Tenho 20 anos... Sou isso... Sou aquilo...');
 
             $table->timestamps();
         });

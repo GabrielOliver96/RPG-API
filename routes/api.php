@@ -12,6 +12,7 @@ Route::post('/login', [App\Http\Controllers\UserController::class, 'login']);
 
 Route::group(['middleware' => ['AuthJwt']], function(){
 
+    Route::post('/logout', [App\Http\Controllers\UserController::class, 'logout']);
     Route::post('/create-character-informations', [App\Http\Controllers\CharacterController::class, 'createCharacterInformations']);
-        
+
 });
