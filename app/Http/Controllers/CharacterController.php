@@ -4,55 +4,40 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
-use App\Models\CharacterInformations;
-use App\Validation\Validation;
 use App\Jwt\Jwt;
 use App\Contracts\IJwt;
-/*
-use App\Contracts\ITeste;
-use App\Jwt\Teste1;
-use App\Jwt\Teste2;
-*/
+use App\Repos\CharacterRepos;
+use App\Contracts\IRepos;
+
 class CharacterController extends Controller
 {
 
-    private $_jwt;
+    protected $_jwt;
+    protected $_repos;
 
-    public function __construct(IJwt $jwt){
+    public function __construct(IJwt $jwt, IRepos $IRepos){
 
         $this->_jwt = $jwt;
+        $this->_repos = $IRepos;
     }
     
-    public function createCharacter(Request $request){
+    public function createCharacterInfo(Request $request){
         
         $data = $request->all();   
         
-        $headerToken = explode(' ', $request->header('authorization'));
+        $createInfoCharacter = $this->_repos->create($data);
 
-        $payload = $this->_jwt->validateJwt($headerToken[1]);
-
-        if(!$payload){
+        if(!$createInfoCharacter){
 
             $response['error'] = 'Necessário estar logado.';
-            return $response;
         }
 
-        $createCharacter = CharacterInformations::create([
-            'user_id' => $payload->id,
-            'nome' => $request->nome,
-            'jogador' => $request->jogador,
-            'ocupacao' => $request->ocupacao,
-            'idade' => $request->idade,
-            'sexo' => $request->sexo,
-            'peso' => $request->peso,
-            'altura' => $request->altura,
-            'descricao_do_personagem' => $request->descricao_do_personagem
-        ]);
-        
         $response['success'] = 'As informações básicas do seu personagem foram adicionadas com sucesso.';
 
         return $response;
-
     }
 
+    public function findCharacter(Request $request){
+
+    }
 }

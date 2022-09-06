@@ -15,6 +15,7 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         App::bind('App\Contracts\IJwt', 'App\Jwt\Jwt');
+        App::bind('App\Contracts\IRepos', 'App\Repos\CharacterRepos');
     }
 
     /**
