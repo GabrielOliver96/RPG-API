@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('academicos', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('character_id');
-            $table->foreign('character_id')->references('id')->on('character_informations');
+            $table->foreign('character_id')->references('id')->on('characters');
             $table->string('conhecimento_academico')->default('...');
             $table->string('pontos')->default(0);
             $table->timestamps();

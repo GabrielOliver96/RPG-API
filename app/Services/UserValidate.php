@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Validation;
+namespace App\Services;
 
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 
-class Validation{
+class UserValidate{
 
     public static function register($request){
 
@@ -26,19 +26,7 @@ class Validation{
         ];
         
         $validator = Validator::make($request->all(), $rules, $messages);
-
-        $users = User::all();
-
-        foreach($users as $user){
-
-            if(Hash::check($request->password, $user->password)){
-                $response = 'E-mail e/ou senha inválidos.';
-
-                return $response;
-            }
-
-        }
-
+        
         if($validator->fails()){
 
             $response['error'] = $validator->messages();
@@ -67,7 +55,7 @@ class Validation{
         }
 
         $user = User::where('email', $request->email)->first();
-        
+
         if(!$user || !Hash::check($request->password, $user->password)){
 
             $response['error'] = 'E-mail e/ou senha inválidos.';
