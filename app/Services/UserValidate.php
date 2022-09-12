@@ -14,7 +14,8 @@ class UserValidate{
         $rules = [
             'name' => 'required',
             'email' => 'required|unique:users',
-            'password' => 'required|min:8'
+            'password' => 'required|min_digits:8|confirmed',
+            'password_confirmation' => 'required'
         ];
     
         $messages = [
@@ -22,16 +23,18 @@ class UserValidate{
             'email.required' => 'Necessário um e-mail para cadastro.',
             'email.unique' => 'E-mail e/ou senha inválidos.',
             'password.required' => 'Necessário uma senha para cadastro.',
-            'password.min' => 'Senha precisa ter no mínimo 8 caracteres.'
+            'password.min_digits' => 'Senha precisa ter no mínimo 8 caracteres.',
+            'password.confirmed' => 'As senhas não são iguais.',
+            'password_confirmation.min' => 'Necessário confirmar senha.'
         ];
         
         $validator = Validator::make($request->all(), $rules, $messages);
-        
-        if($validator->fails()){
 
-            $response['error'] = $validator->messages();
-            return $response['error'];
+        if ($validator->fails()){
+
+            return $validator->messages();
         }
+        
     }
 
     public static function login($request){

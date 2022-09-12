@@ -1,77 +1,63 @@
-@extends('layouts.app')
+@extends('layouts.app1')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+<div class="container d-flex justify-content-center">
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
-                        @csrf
-
-                        <div class="row mb-3">
-                            <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-
-                                @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                            </div>
-                        </div>
-
-                        <div class="row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
+    <div class="card col-lg-4 p-2 bg-dark text-white border">
+        <div class="d-flex justify-content-center">
+            <a class="navbar-brand" href="{{ url('/') }}">RPG</a>
         </div>
+
+        <p class="d-flex justify-content-center">Crie sua conta</p>
+
+        @if($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        {{$error}}<br>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
+        <form method="POST">
+            @csrf
+
+            <div class="form-group mt-1">
+                <label>Seu nome</label>
+                <input type="name" name="name" class="form-control" placeholder="Seu nome">
+            </div>
+
+            <div class="form-group mt-3">
+                <label>Seu e-mail</label>
+                <input type="email" name="email" class="form-control @error('title', 'post') is-invalid @enderror" placeholder="Seu email">
+            </div>
+
+            <div class="form-group mt-3">
+                <label>Senha</label>
+                <input type="password" name="password" class="form-control" placeholder="Senha">
+                <small id="info-password" class="form-text text-muted">A senha precisa ter pelo menos 8 caracteres.</small>
+            </div>
+
+            <div class="form-group mt-3">
+                <label>Insira a senha mais uma vez</label>
+                <input type="password" name="password_confirmation" class="form-control" name="" placeholder="Confirmar senha">
+            </div>
+
+            <button type="submit" class="btn btn-primary mt-3 col-lg-12 fw-bold">Continuar</button>
+
+        </form>
+
+        <small id="info-user-condition" class="form-text text-muted">
+        Ao criar uma conta, você concorda com as Condições de Uso do RPG. 
+        Por favor verifique a Notificação de Privacidade, Notificação de Cookies 
+        e a Notificação de Anúncios Baseados em Interesse.
+        </small>
+
+        <small id="info-login" class="form-text text-muted mt-2">
+        Já tem uma conta? <a href="{{ url('/login') }}">Faça login</a>
+        </small>
     </div>
+
 </div>
 @endsection

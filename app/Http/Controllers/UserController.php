@@ -1,50 +1,37 @@
 <?php
 
-namespace App\Http\Controllers\ControllersAPI;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Services\UserValidate;
 use App\Contracts\IUserRepos;
-use App\Contracts\IJwt;
 
 class UserController extends Controller
 {      
     
     protected $_repos;
-    protected $_jwt;
     
-    public function __construct(IUserRepos $repos, IJwt $jwt) {
+    public function __construct(IUserRepos $repos) {
 
         $this->_repos = $repos;
-        $this->_jwt = $jwt;
     }
     
     public function register(Request $request) {
         
         $validation = UserValidate::register($request);
-        //Se não retornar nenhum erro.
-        if($validation->fails()){
 
-            $response['error'] = $validation->messages();
-            return $response['error'];
-        }
+        //dd($validation);
+        //Se não retornar nenhum erro.
+        /*
+        if($validation != null){
+
+            return redirect()->route('register');
+        }*/
 
         $register = $this->_repos->register($request);
 
-        if(!$register){
-
-            $response['error'] = 'Informações para cadastro inválidas.';
-        }
-
-        $token = $this->_jwt->createJwt($register);
-
-        $response = [
-            'success' => 'Cadastro realizado com sucesso.',
-            'token' => $token
-        ];
-
-        return $response;
+        return view('welcome');
     }
 
     public function login(Request $request) {
