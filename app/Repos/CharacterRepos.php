@@ -34,22 +34,12 @@ class CharacterRepos implements ICharacterRepos{
         return $this->_model->all();
     }
 
-    public function store($data){
+    public function store($user, $data){
 
-        $headerToken = explode(' ', $this->_request->header('authorization')); 
-
-        $payload = $this->_jwt->validateJwt($headerToken[1]);
-
-        if(!$payload){
-
-            $response = false; //necessário estar logado.
-            return $response;
-        }
-        
         $character = $this->_model->create([
-            'user_id' => $payload->id,
+            'user_id' => $user->id, //controller manda através da variavel payload
             'nome' => $data['nome'],
-            'jogador' => $data['jogador'],
+            'jogador' => $user->name,
             'ocupacao' => $data['ocupacao'],
             'idade' => $data['idade'],
             'sexo' => $data['sexo'],

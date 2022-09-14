@@ -11,5 +11,10 @@ Route::get('/', function () {
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-//Cadastro e login.
-Route::post('/register', [App\Http\Controllers\UserController::class, 'register'])->name('register');
+Route::prefix('/character')->group(function(){
+
+    Route::get('/create-character', function(){ return view('character.create'); });
+    Route::post('/create-character', [App\Http\Controllers\CharacterController::class, 'createCharacter'])->name('createCharacter');
+
+});
+

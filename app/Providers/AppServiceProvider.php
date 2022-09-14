@@ -7,11 +7,7 @@ use Illuminate\Support\Facades\App;
 
 class AppServiceProvider extends ServiceProvider
 {
-    /**
-     * Register any application services.
-     *
-     * @return void
-     */
+    
     public function register()
     {
         App::bind('App\Contracts\IJwt', 'App\Jwt\Jwt');
@@ -19,11 +15,6 @@ class AppServiceProvider extends ServiceProvider
         App::bind('App\Contracts\IUserRepos', 'App\Repos\UserRepos');
     }
 
-    /**
-     * Bootstrap any application services.
-     *
-     * @return void
-     */
     public function boot()
     {
         //

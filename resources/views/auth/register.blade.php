@@ -30,7 +30,12 @@
 
             <div class="form-group mt-3">
                 <label>Seu e-mail</label>
-                <input type="email" name="email" class="form-control @error('title', 'post') is-invalid @enderror" placeholder="Seu email">
+                <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" placeholder="Seu email">
+                @error('email')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
             </div>
 
             <div class="form-group mt-3">

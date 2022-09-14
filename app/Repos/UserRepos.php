@@ -34,11 +34,7 @@ class UserRepos implements IUserRepos {
         return $data;
     }
 
-    public function login($request) {
-
-        $data = $this->_model->where('email', $request->email)->first();
-
-        return $data;
-    }
+    
+    
 
 }

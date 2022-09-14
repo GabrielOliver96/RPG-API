@@ -4,17 +4,19 @@ namespace App\Http\Controllers\ControllersAPI;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Contracts\IJwt;
 use App\Contracts\ICharacterRepos;
+use App\Contracts\IJwt;
 
 class CharacterController extends Controller
 {
 
-    private $_repos;
+    protected $_repos;
+    protected $_jwt;
 
-    public function __construct(ICharacterRepos $IRepos){
+    public function __construct(ICharacterRepos $IRepos, IJwt $iJwt){
 
         $this->_repos = $IRepos;
+        $this->_jwt = $iJwt;
     }
 
     public function findAllCharacters(){
@@ -30,8 +32,18 @@ class CharacterController extends Controller
     public function createCharacter(Request $request){
         
         $data = $request->all();   
+
+        $headerToken = explode(' ', $request->header('authorization')); 
+
+        $payload = $this->_jwt->validateJwt($headerToken[1]);
+
+        if(!$payload){
+
+            $response = false; //necessário estar logado.
+            return $response;
+        }
         
-        $createCharacter = $this->_repos->store($data);
+        $createCharacter = $this->_repos->store($payload, $data);
 
         if(!$createCharacter){
 
