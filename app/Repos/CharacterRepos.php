@@ -25,7 +25,7 @@ class CharacterRepos implements ICharacterRepos{
         
         $headerToken = explode(' ', $this->_request->header('authorization'));
         $payload = $this->_jwt->validateJwt($headerToken[1]);
-
+        
         if(!$payload){
             $response = false;
             return $response;
@@ -59,6 +59,8 @@ class CharacterRepos implements ICharacterRepos{
 
             'prontidao' => $data['prontidao'],
             'esporte' => $data['esporte'],
+            'conducao' => $data['conducao'],
+            'seguranca' => $data['seguranca'],
             'briga' => $data['briga'],
             'armas_brancas' => $data['armas_brancas'],
             'armas_de_fogo' => $data['armas_de_fogo'],
@@ -71,15 +73,14 @@ class CharacterRepos implements ICharacterRepos{
             'labia' => $data['labia'],
             'empatia_com_animais' => $data['empatia_com_animais'],
             'oficios' => $data['oficios'],
-            'conducao' => $data['conducao'],
             'etiqueta' => $data['etiqueta'],
             'performance' => $data['performance'],
-            'seguranca' => $data['seguranca'],
             'furtividade' => $data['furtividade'],
+            'investigacao' => $data['investigacao'],
             'sobrevivencia' => $data['sobrevivencia'],
             'academico' => $data['academico'],
             'computador' => $data['computador'],
-            'investigacao' => $data['investigacao'],
+            
             'idioma' => $data['idioma'],
             'medicina' => $data['medicina'],
             'ocultismo' => $data['ocultismo'],

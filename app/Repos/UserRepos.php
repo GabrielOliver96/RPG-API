@@ -34,7 +34,15 @@ class UserRepos implements IUserRepos {
         return $data;
     }
 
-    
-    
+    public function login($request){
+
+        $user = $this->_model->where('email', $request->email)->first();
+
+        if (Hash::check($request->password, $user->password)) {
+            
+            return $user;
+        }
+
+    }
 
 }

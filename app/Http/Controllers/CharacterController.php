@@ -10,10 +10,11 @@ use App\Contracts\ICharacterRepos;
 class CharacterController extends Controller
 {
 
-    private $_repos;
+    protected $_repos;
 
     public function __construct(ICharacterRepos $IRepos){
 
+        //$this->middleware('auth');
         $this->_repos = $IRepos;
     }
 

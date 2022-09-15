@@ -11,10 +11,10 @@ Route::get('/', function () {
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::prefix('/character')->group(function(){
+Route::middleware(['auth'])->prefix('/character')->group(function(){
 
-    Route::get('/create-character', function(){ return view('character.create'); });
-    Route::post('/create-character', [App\Http\Controllers\CharacterController::class, 'createCharacter'])->name('createCharacter');
+    Route::get('/create', function(){ return view('character.create'); });
+    Route::post('/create', [App\Http\Controllers\CharacterController::class, 'createCharacter'])->name('createCharacter');
 
 });
 
