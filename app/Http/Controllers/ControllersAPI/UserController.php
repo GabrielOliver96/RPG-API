@@ -24,9 +24,9 @@ class UserController extends Controller
         
         $validation = UserValidate::register($request);
         //Se não retornar nenhum erro.
-        if($validation->fails()){
+        if($validation != null){
 
-            $response['error'] = $validation->messages();
+            $response['error'] = $validation;
             return $response['error'];
         }
 

@@ -56,6 +56,10 @@
                                     <a class="dropdown-item text-dark" href="{{route('createCharacter')}}">
                                         {{ __('Criar') }}
                                     </a>
+
+                                    <a class="dropdown-item text-dark" href="{{route('allCharacters')}}">
+                                        {{ __('Listar') }}
+                                    </a>
                     
                                 </div>
                             </li>

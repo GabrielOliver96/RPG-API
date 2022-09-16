@@ -21,17 +21,11 @@ class CharacterRepos implements ICharacterRepos{
         $this->_jwt = $iJwt;
     }
 
-    public function findAll(){
+    public function findAll($userId){
+       
+        $allCharactersUser = $this->_model->where('user_id', $userId)->get()->all();
         
-        $headerToken = explode(' ', $this->_request->header('authorization'));
-        $payload = $this->_jwt->validateJwt($headerToken[1]);
-        
-        if(!$payload){
-            $response = false;
-            return $response;
-        }
-
-        return $this->_model->all();
+        return $allCharactersUser;
     }
 
     public function store($user, $data){

@@ -20,7 +20,12 @@ class CharacterController extends Controller
 
     public function findAllCharacters(){
 
-        
+        $userId = auth()->user()->id;
+
+        $allCharacters = $this->_repos->findAll($userId);
+
+        return view('character.all', compact('allCharacters'));
+
     }
     
     public function createCharacter(Request $request){

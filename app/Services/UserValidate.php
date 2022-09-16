@@ -31,7 +31,7 @@ class UserValidate{
         $validator = Validator::make($request->all(), $rules, $messages);
 
         if ($validator->fails()){
-
+            
             return $validator->messages();
         }
         

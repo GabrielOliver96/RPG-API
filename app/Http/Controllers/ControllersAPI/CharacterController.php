@@ -10,30 +10,42 @@ use App\Contracts\IJwt;
 class CharacterController extends Controller
 {
 
+    protected $_request;
     protected $_repos;
     protected $_jwt;
 
-    public function __construct(ICharacterRepos $IRepos, IJwt $iJwt){
+    public function __construct(Request $request, ICharacterRepos $IRepos, IJwt $iJwt){
 
-        $this->_repos = $IRepos;
+        $this->_request = $request;
+        $this->_repos = $IRepos;    
         $this->_jwt = $iJwt;
     }
 
     public function findAllCharacters(){
 
-        $findAllCharacters = $this->_repos->findAll();
+        $headerToken = explode(' ', $this->_request->header('authorization'));
+        $payload = $this->_jwt->validateJwt($headerToken[1]);
+
+        if(!$payload){
+            $response['error'] = 'Necessário estar logado.';
+            return $response;
+        }
+
+        $allCharacters = $this->_repos->findAll($payload->id);
         
-        if(!$findAllCharacters){
-            $response = 'Necessário estar logado.';
+        if(empty($allCharacters)){
+            $response['error'] = 'Nenhum personagem cadastrado.';
             return $response;
         } 
+
+        return $allCharacters;
     }
     
-    public function createCharacter(Request $request){
+    public function createCharacter(){
         
-        $data = $request->all();   
+        $data = $_request->all();   
 
-        $headerToken = explode(' ', $request->header('authorization')); 
+        $headerToken = explode(' ', $this->_request->header('authorization')); 
 
         $payload = $this->_jwt->validateJwt($headerToken[1]);
 
@@ -55,7 +67,7 @@ class CharacterController extends Controller
         return $response;
     }
 
-    public function findCharacter(Request $request){
+    public function findCharacter(){
 
     }
 }
