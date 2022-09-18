@@ -102,7 +102,7 @@ class CharacterRepos implements ICharacterRepos{
     public function delete($id){
 
         $delete = $this->_model->where('id', $id)->delete();
-
+        
         return $delete;
     }
 

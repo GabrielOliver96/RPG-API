@@ -71,13 +71,17 @@ class CharacterController extends Controller
 
         $deleteCharacter = $this->_repos->delete($id);
 
-        //dd($deleteCharacter);
+        if($deleteCharacter == 0){
 
-        $response['error'] = 'Personagem excluído com sucesso.';
+            $response['error'] = 'Não existe personagem para ser excluído.';
 
-        return $respose;
+            return $response;
+        }
 
-    }
+        $response['success'] = 'Personagem excluído com sucesso.';
+        
+        return $response;
+    }  
 
     public function findCharacter(){
 

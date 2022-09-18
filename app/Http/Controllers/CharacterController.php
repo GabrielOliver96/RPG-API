@@ -45,7 +45,7 @@ class CharacterController extends Controller
         
         $createCharacter = $this->_repos->store(auth()->user(), $data);
 
-        return redirect()->route('home');
+        return redirect()->route('allCharacters');
     }
 
     public function deleteCharacter($id){
