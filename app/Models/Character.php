@@ -19,6 +19,7 @@ class Character extends Model
         'peso',
         'altura',
         'descricao_do_personagem',
+        'character_image',
 
         'forca',
         'destreza',

@@ -40,6 +40,7 @@ class CharacterRepos implements ICharacterRepos{
             'peso' => $data['peso'],
             'altura' => $data['altura'],
             'descricao_do_personagem' => $data['descricao_do_personagem'],
+            'character_image' => $data['character_image'],
 
             'forca' => $data['forca'],
             'destreza' => $data['destreza'],

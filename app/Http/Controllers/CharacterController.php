@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Contracts\IJwt;
 use App\Contracts\ICharacterRepos;
+use Illuminate\Support\Facades\Storage;
+
+use App\Models\CharacterImage;
 
 class CharacterController extends Controller
 {
@@ -23,11 +26,19 @@ class CharacterController extends Controller
         $userId = auth()->user()->id;
 
         $allCharacters = $this->_repos->findAll($userId);
-
+        
         return view('character.all', compact('allCharacters'));
 
     }
     
+    public function createCharacterView(){
+
+        $allImages = CharacterImage::all();
+        
+        return view('character.create', compact('allImages'));
+
+    }
+
     public function createCharacter(Request $request){
         
         $data = $request->all();   
@@ -35,6 +46,20 @@ class CharacterController extends Controller
         $createCharacter = $this->_repos->store(auth()->user(), $data);
 
         return redirect()->route('home');
+    }
+
+    public function addImg(Request $request){
+        
+        $file = $request->character_image;
+        $extension = $file->extension();
+
+        /*if($extension == 'png'){
+            
+        }*/
+
+        $path = $request->file('character_image')->storeAs('tokens', 'a.png', 'img');
+        
+        return view('character.all');
     }
 
     public function findCharacter(Request $request){

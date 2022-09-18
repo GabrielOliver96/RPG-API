@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('character_images', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('character_id');
-            $table->foreign('character_id')->references('id')->on('characters');
-            $table->string('character_image')->default('...');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->string('character_image');
             $table->timestamps();
         });
     }
