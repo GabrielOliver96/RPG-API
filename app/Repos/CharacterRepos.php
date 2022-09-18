@@ -99,6 +99,13 @@ class CharacterRepos implements ICharacterRepos{
         return $character;
     }
 
+    public function delete($id){
+
+        $delete = $this->_model->where('id', $id)->delete();
+
+        return $delete;
+    }
+
     public function find($id){
 
     }

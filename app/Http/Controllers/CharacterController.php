@@ -48,6 +48,21 @@ class CharacterController extends Controller
         return redirect()->route('home');
     }
 
+    public function deleteCharacter($id){
+        
+        $deleteCharacter = $this->_repos->delete($id);
+
+        return redirect()->route('allCharacters');
+
+    }
+
+    public function findCharacter(Request $request){
+
+    }
+
+
+
+
     public function addImg(Request $request){
         
         $file = $request->character_image;
@@ -62,7 +77,5 @@ class CharacterController extends Controller
         return view('character.all');
     }
 
-    public function findCharacter(Request $request){
-
-    }
+    
 }

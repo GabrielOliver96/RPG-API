@@ -313,7 +313,7 @@
                                 @if(!empty($allImages))
                                 
                                     @foreach($allImages as $image) 
-                                        <img onclick="selectCharacter('{{'image-'.$image->id}}')" src="{{url("$image->character_image")}}" height="200" class="m-4">
+                                        <img data-dismiss="modal" onclick="selectCharacter('{{'image-'.$image->id}}')" src="{{url("$image->character_image")}}" height="200" class="m-4">
                                         <input id="image-{{$image->id}}" type="radio" style="display:none;" value="{{$image->character_image}}">
                                     @endforeach
 
