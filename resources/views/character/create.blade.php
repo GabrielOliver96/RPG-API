@@ -310,14 +310,43 @@
                                 </div>
                                 <div class="modal-body">
                                     
-                                @if(!empty($allImages))
-                                
-                                    @foreach($allImages as $image) 
-                                        <img data-dismiss="modal" onclick="selectCharacter('{{'image-'.$image->id}}')" src="{{url("$image->character_image")}}" height="200" class="m-4">
-                                        <input id="image-{{$image->id}}" type="radio" style="display:none;" value="{{$image->character_image}}">
-                                    @endforeach
 
-                                @endif
+                                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" id="masculine-tab" data-toggle="tab" href="#masculine" role="tab" aria-controls="masculine" aria-selected="true">Masculinos</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="feminine-tab" data-toggle="tab" href="#feminine" role="tab" aria-controls="feminine" aria-selected="false">Femininos</a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content" id="myTabContent">
+                                    <div class="tab-pane fade show active" id="masculine" role="tabpanel" aria-labelledby="masculine-tab">
+
+                                        @if(!empty($allImagesMasculine))
+                                            
+                                            @foreach($allImagesMasculine as $imageMasculine) 
+                                                <img data-dismiss="modal" onclick="selectCharacter('{{'image-'.$imageMasculine->id}}')" src="{{url("$imageMasculine->character_image")}}" height="200" class="m-4">
+                                                <input id="image-{{$imageMasculine->id}}" type="radio" style="display:none;" value="{{$imageMasculine->character_image}}">
+                                            @endforeach
+
+                                        @endif
+
+                                    </div>
+                                    <div class="tab-pane fade" id="feminine" role="tabpanel" aria-labelledby="feminine-tab">
+
+                                         @if(!empty($allImagesFeminine))
+                                            
+                                            @foreach($allImagesFeminine as $imageFeminine) 
+                                                <img data-dismiss="modal" onclick="selectCharacter('{{'image-'.$imageFeminine->id}}')" src="{{url("$imageFeminine->character_image")}}" height="200" class="m-4">
+                                                <input id="image-{{$imageFeminine->id}}" type="radio" style="display:none;" value="{{$imageFeminine->character_image}}">
+                                            @endforeach
+
+                                        @endif
+
+                                    </div>
+                                </div>
+
+                                
 
                                 </div>
                                 <div class="modal-footer">
@@ -327,7 +356,7 @@
                         </div>
                     </div>
 
-                    <img src="{{url('img/tokens/t0.png')}}" id="selectedCharacterImg" height="200" class="m-4">
+                    <img src="{{url('img/tokens/masculine/t0.png')}}" id="selectedCharacterImg" height="200" class="m-4">
                     <input type="hidden" id="checkedImg" name="character_image" value="">
                     
                 </div>
