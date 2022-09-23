@@ -39,7 +39,7 @@
                         {{$character->descricao_do_personagem}}
                     </div>
 
-                    <div class="col-2">
+                    <div class="col-1 mb-5">
                         
 
                         <a type="submit" class="btn btn-danger" href="{{route('deleteCharacter', ['id' => $character->id])}}" onclick="confirm('Tem certeza que deseja excluir?')">
