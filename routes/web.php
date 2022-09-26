@@ -21,6 +21,8 @@ Route::middleware(['auth'])->prefix('/character')->group(function(){
     Route::get('/create', [App\Http\Controllers\CharacterController::class, 'createCharacterView']);
     Route::post('/create', [App\Http\Controllers\CharacterController::class, 'createCharacter'])->name('createCharacter');
 
+    Route::get('/create/vampire-the-mascared-3ed', [App\Http\Controllers\CharacterController::class, 'createCharacter']);
+
     Route::get('/delete/{id}', [App\Http\Controllers\CharacterController::class, 'deleteCharacter'])->name('deleteCharacter');
 
 });

@@ -4,6 +4,7 @@ namespace App\Repos;
 
 use Illuminate\Http\Request;
 use App\Models\Character;
+use App\Models\Antecedente;
 use App\Contracts\ICharacterRepos;
 use App\Contracts\IJwt;
 
@@ -29,22 +30,22 @@ class CharacterRepos implements ICharacterRepos{
     }
 
     public function store($user, $data){
-
+        //dd($data);
         $character = $this->_model->create([
             'user_id' => $user->id, //controller manda através da variavel payload
             'nome' => $data['nome'],
             'jogador' => $user->name,
-            'ocupacao' => $data['ocupacao'],
-            'idade' => $data['idade'],
-            'sexo' => $data['sexo'],
-            'peso' => $data['peso'],
-            'altura' => $data['altura'],
+            'cronica' => $data['cronica'],
+            'natureza' => $data['natureza'],
+            'comportamento' => $data['comportamento'],
+            'cla' => $data['cla'],
+            'geracao' => $data['geracao'],
             'descricao_do_personagem' => $data['descricao_do_personagem'],
             'character_image' => $data['character_image'],
 
             'forca' => $data['forca'],
             'destreza' => $data['destreza'],
-            'agilidade' => $data['agilidade'],
+            'vigor' => $data['vigor'],
             'carisma' => $data['carisma'],
             'manipulacao' => $data['manipulacao'],
             'aparencia' => $data['aparencia'],
@@ -54,47 +55,60 @@ class CharacterRepos implements ICharacterRepos{
 
             'prontidao' => $data['prontidao'],
             'esporte' => $data['esporte'],
-            'conducao' => $data['conducao'],
-            'seguranca' => $data['seguranca'],
             'briga' => $data['briga'],
-            'armas_brancas' => $data['armas_brancas'],
-            'armas_de_fogo' => $data['armas_de_fogo'],
-            'esquiva' => $data['esquiva'],
+            'esquiva' => $data['esquiva'], 
             'empatia' => $data['empatia'],
             'expressao' => $data['expressao'],
             'intimidacao' => $data['intimidacao'],
             'lideranca' => $data['lideranca'],
             'manha' => $data['manha'],
             'labia' => $data['labia'],
+
             'empatia_com_animais' => $data['empatia_com_animais'],
             'oficios' => $data['oficios'],
+            'conducao' => $data['conducao'],
             'etiqueta' => $data['etiqueta'],
+            'armas_de_fogo' => $data['armas_de_fogo'],
+            'armas_brancas' => $data['armas_brancas'],
             'performance' => $data['performance'],
+            'seguranca' => $data['seguranca'],
             'furtividade' => $data['furtividade'],
-            'investigacao' => $data['investigacao'],
             'sobrevivencia' => $data['sobrevivencia'],
-            'academico' => $data['academico'],
+
+            'academicos' => $data['academicos'],
             'computador' => $data['computador'],
-            
-            'idioma' => $data['idioma'],
+            'financas' => $data['financas'],
+            'investigacao' => $data['investigacao'],
+            'direito' => $data['direito'],
+            'linguistica' => $data['linguistica'],
             'medicina' => $data['medicina'],
             'ocultismo' => $data['ocultismo'],
+            'politica' => $data['politica'],
             'ciencia' => $data['ciencia'],
 
-            'vigor' => $data['vigor'],
-            'consciencia' => $data['consciencia'],
-            'autocontrole' => $data['autocontrole'],
+            'consciencia/conviccao' => $data['consciencia/conviccao'], 
+            'autocontrole/instintos' => $data['autocontrole/instintos'], 
             'coragem' => $data['coragem'],
-            'humanidade' => $data['consciencia'] + $data['autocontrole'],
-            'pontos_de_vida' => $data['vigor'] * 5,
-            'sanidade' => $data['consciencia'] * 3
+                
+            'humanidade' => $data['consciencia/conviccao'] + $data['autocontrole/instintos'], 
+            'forca_de_vontade' => $data['coragem'],
+            'pontos_de_sangue' => $data['pontos_de_sangue'], //adicionar função que calcula de acordo geração escolhida
 
-            /*
-            Humanidade = Consciência + Autocontrole
-            Pontos de vida = Vigor * 5
-            Sanidade = Consciência * 3
-            */
+            'vitalidade' => 0,
+            'experiencia' => 0,
         ]);
+
+        foreach(array_combine($data['antecedente'], $data['pontos']) as $antecedente => $pontos){
+            $antecedentes[] = [
+                'character_id' => $character->id,
+                'antecedente' => $antecedente,
+                'pontos' => $pontos,
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ]; 
+        }
+        
+        $insertAntedecentes = Antecedente::insert($antecedentes);
 
         return $character;
     }
@@ -102,7 +116,7 @@ class CharacterRepos implements ICharacterRepos{
     public function delete($id){
 
         $delete = $this->_model->where('id', $id)->delete();
-        
+
         return $delete;
     }
 

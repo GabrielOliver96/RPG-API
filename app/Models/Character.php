@@ -13,17 +13,17 @@ class Character extends Model
         'user_id',
         'nome',
         'jogador',
-        'ocupacao',
-        'idade',
-        'sexo',
-        'peso',
-        'altura',
+        'cronica',
+        'natureza',
+        'comportamento',
+        'cla',
+        'geracao',
         'descricao_do_personagem',
         'character_image',
 
         'forca',
         'destreza',
-        'agilidade',
+        'vigor',
         'carisma',
         'manipulacao',
         'aparencia',
@@ -34,43 +34,46 @@ class Character extends Model
         'prontidao',
         'esporte',
         'briga',
-        'armas_brancas',
-        'armas_de_fogo',
-        'esquiva',
+        'esquiva', 
         'empatia',
         'expressao',
         'intimidacao',
         'lideranca',
         'manha',
         'labia',
+
         'empatia_com_animais',
         'oficios',
         'conducao',
         'etiqueta',
+        'armas_de_fogo',
+        'armas_brancas',
         'performance',
         'seguranca',
         'furtividade',
         'sobrevivencia',
-        'academico',
+
+        'academicos',
         'computador',
+        'financas',
         'investigacao',
-        'idioma',
+        'direito',
+        'linguistica',
         'medicina',
         'ocultismo',
+        'politica',
         'ciencia',
 
-        'vigor',
-        'consciencia',
-        'autocontrole',
+        'consciencia/conviccao', 
+        'autocontrole/instintos', 
         'coragem',
-        'humanidade',
-        'pontos_de_vida',
-        'sanidade'
+            
+        'humanidade', 
+        'forca_de_vontade',
+        'pontos_de_sangue',
+
+        'vitalidade',
+        'experiencia'
     ];
 
-    /*
-    Humanidade = Consciência + Autocontrole
-    Pontos de vida = Vigor * 5
-    Sanidade = Consciência * 3
-    */
 }
