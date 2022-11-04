@@ -35,7 +35,7 @@ class CharacterController extends Controller
 
         $allImagesMasculine = CharacterImage::where('gender', 'masculino')->get();
         $allImagesFeminine = CharacterImage::where('gender', 'feminino')->get();
-        
+        //dd($allImagesFeminine);
         return view('character.create', compact('allImagesMasculine', 'allImagesFeminine'));
 
     }

@@ -30,7 +30,7 @@ class CharacterRepos implements ICharacterRepos{
     }
 
     public function store($user, $data){
-        //dd($data);
+        
         $character = $this->_model->create([
             'user_id' => $user->id, //controller manda através da variavel payload
             'nome' => $data['nome'],
@@ -98,6 +98,7 @@ class CharacterRepos implements ICharacterRepos{
             'experiencia' => 0,
         ]);
 
+        /*
         foreach(array_combine($data['antecedente'], $data['pontos']) as $antecedente => $pontos){
             $antecedentes[] = [
                 'character_id' => $character->id,
@@ -109,7 +110,7 @@ class CharacterRepos implements ICharacterRepos{
         }
         
         $insertAntedecentes = Antecedente::insert($antecedentes);
-
+        */
         return $character;
     }
 

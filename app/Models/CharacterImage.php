@@ -11,6 +11,7 @@ class CharacterImage extends Model
 
     protected $fillable = [
         'character_id',
-        'character_image'
+        'character_image',
+        'gender'
     ];
 }
