@@ -486,21 +486,21 @@
                             <div class="row">
 
                                 <div class="col-lg-9">
-                                    <input type="text" id="firstDiscipline" name="disciplina[]" class="form-control bg-dark text-white mt-2" placeholder="Disciplina" disabled>
+                                    <input type="text" id="firstDiscipline" name="disciplinas[]" class="form-control bg-dark text-white mt-2" readonly>
                                 </div>
                                 <div class="col-lg-3">
                                     <input type="text" name="pontos[]" class="form-control bg-dark text-white mt-2" placeholder="Pontos">
                                 </div>
 
                                 <div class="col-lg-9">
-                                    <input type="text" id="secondDiscipline" name="disciplina[]" class="form-control bg-dark text-white mt-2" placeholder="Disciplina" disabled>
+                                    <input type="text" id="secondDiscipline" name="disciplinas[]" class="form-control bg-dark text-white mt-2" readonly>
                                 </div>
                                 <div class="col-lg-3">
                                     <input type="text" name="pontos[]" class="form-control bg-dark text-white mt-2" placeholder="Pontos">
                                 </div>
 
                                 <div class="col-lg-9">
-                                    <input type="text" id="thirdDiscipline" name="disciplina[]" class="form-control bg-dark text-white mt-2" placeholder="Disciplina" disabled>
+                                    <input type="text" id="thirdDiscipline" name="disciplinas[]" class="form-control bg-dark text-white mt-2" readonly>
                                 </div>
                                 <div class="col-lg-3">
                                     <input type="text" name="pontos[]" class="form-control bg-dark text-white mt-2" placeholder="Pontos">

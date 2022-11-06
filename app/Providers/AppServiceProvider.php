@@ -12,6 +12,7 @@ class AppServiceProvider extends ServiceProvider
     {
         App::bind('App\Contracts\IJwt', 'App\Jwt\Jwt');
         App::bind('App\Contracts\ICharacterRepos', 'App\Repos\CharacterRepos');
+        App::bind('App\Contracts\IDisciplineRepos', 'App\Repos\DisciplineRepos');
         App::bind('App\Contracts\IUserRepos', 'App\Repos\UserRepos');
     }
 

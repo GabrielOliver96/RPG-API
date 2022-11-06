@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Contracts\IJwt;
 use App\Contracts\ICharacterRepos;
+use App\Contracts\IDisciplineRepos;
 use Illuminate\Support\Facades\Storage;
 
 use App\Models\CharacterImage;
@@ -15,17 +16,18 @@ class CharacterController extends Controller
 
     protected $_repos;
 
-    public function __construct(ICharacterRepos $IRepos){
+    public function __construct(ICharacterRepos $ICharacterRepos, IDisciplineRepos $IDisciplineRepos){
 
         //$this->middleware('auth');
-        $this->_repos = $IRepos;
+        $this->_characterRepos = $ICharacterRepos;
+        $this->_disciplineRepos = $IDisciplineRepos;
     }
 
     public function findAllCharacters(){
 
         $userId = auth()->user()->id;
 
-        $allCharacters = $this->_repos->findAll($userId);
+        $allCharacters = $this->_characterRepos->findAll($userId);
         
         return view('character.all', compact('allCharacters'));
 
@@ -35,7 +37,7 @@ class CharacterController extends Controller
 
         $allImagesMasculine = CharacterImage::where('gender', 'masculino')->get();
         $allImagesFeminine = CharacterImage::where('gender', 'feminino')->get();
-        //dd($allImagesFeminine);
+        
         return view('character.create', compact('allImagesMasculine', 'allImagesFeminine'));
 
     }
@@ -44,14 +46,18 @@ class CharacterController extends Controller
         
         $data = $request->all();   
         
-        $createCharacter = $this->_repos->store(auth()->user(), $data);
+        $createCharacter = $this->_characterRepos->store(auth()->user(), $data);
+
+        $createDiscipline = $this->_disciplineRepos->store($createCharacter['id'], $data);
+
+        dd($createDiscipline);
 
         return redirect()->route('allCharacters');
     }
 
     public function deleteCharacter($id){
         
-        $deleteCharacter = $this->_repos->delete($id);
+        $deleteCharacter = $this->_characterRepos->delete($id);
 
         return redirect()->route('allCharacters');
 

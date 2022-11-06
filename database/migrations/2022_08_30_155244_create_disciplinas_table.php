@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('character_id');
             $table->foreign('character_id')->references('id')->on('characters');
-            $table->string('disciplina')->default('...');
-            $table->string('pontos')->default(0);
+            $table->string('disciplina')->nullable();
+            $table->string('pontos')->nullable();
             $table->timestamps();
         });
     }
