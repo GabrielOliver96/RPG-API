@@ -102,6 +102,7 @@ function bloodPointsCalculation(){
     
 }
 
+
 function selectCla(){
 
     let claInput = document.getElementById('cla').value;
@@ -140,6 +141,7 @@ function selectCla(){
     
 }
 
+
 function willpowerCalculation(){
 
     let coragem = document.getElementById('coragem').value;
@@ -147,6 +149,45 @@ function willpowerCalculation(){
 
     exibir.innerHTML = coragem;
     
+}
+
+
+function hitPointControl(favClick){
+
+    
+    console.log(favClick);
+
+    if(favClick.value == ''){
+
+        favClick.value = '/';
+
+    }else if(favClick.value == '/'){
+
+        favClick.value = 'X';
+
+    }else{
+
+        favClick.value = '';
+    };
+
+    //let pv = document.addEventListener("click", function(){
+        //console.log(pv);
+
+        /*
+        if(pv.innerHTML == ''){
+
+            pv.innerHTML = '/';
+
+        }else if(pv.innerHTML == '/'){
+
+            pv.innerHTML = 'X';
+        }else{
+
+            pv.innerHTML = '';
+        };
+    });*/
+    
+
 }
 
 

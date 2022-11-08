@@ -3,9 +3,9 @@
 namespace App\Repos;
 
 use Illuminate\Http\Request;
-use App\Models\Disciplina;
 use App\Contracts\IDisciplineRepos;
 use App\Contracts\IJwt;
+use App\Models\Disciplina;
 
 class DisciplineRepos implements IDisciplineRepos {
 
@@ -34,7 +34,13 @@ class DisciplineRepos implements IDisciplineRepos {
         }
 
         return $disciplines;
+    }
 
+    public function findDisciplinesByCharacterId($id){
+
+        $disciplines = $this->_model->where('character_id', $id)->get();
+
+        return $disciplines;
     }
 
 }

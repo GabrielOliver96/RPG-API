@@ -84,8 +84,8 @@ return new class extends Migration
             $table->string('ciencia')->default('0')->nullable();
 
             //virtudes físicas e mentais
-            $table->string('consciencia/conviccao')->default('0')->nullable(); 
-            $table->string('autocontrole/instintos')->default('0')->nullable(); 
+            $table->string('consciencia_conviccao')->default('0')->nullable(); 
+            $table->string('autocontrole_instintos')->default('0')->nullable(); 
             $table->string('coragem')->default('0')->nullable();
             
             $table->string('humanidade')->default('0')->nullable(); 

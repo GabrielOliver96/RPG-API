@@ -6,8 +6,8 @@ interface ICharacterRepos {
 
     public function findAll($id);
     public function store($id, $data);
-    public function delete($id);
-    public function find($id);
-    public function update($data);
+    public function deleteCharacter($id);
+    public function findCharacter($id);
+    public function updateCharacter($id);
     
 }

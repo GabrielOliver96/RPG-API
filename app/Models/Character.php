@@ -64,8 +64,8 @@ class Character extends Model
         'politica',
         'ciencia',
 
-        'consciencia/conviccao', 
-        'autocontrole/instintos', 
+        'consciencia_conviccao', 
+        'autocontrole_instintos', 
         'coragem',
             
         'humanidade', 

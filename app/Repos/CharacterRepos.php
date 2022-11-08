@@ -86,11 +86,11 @@ class CharacterRepos implements ICharacterRepos{
             'politica' => $data['politica'],
             'ciencia' => $data['ciencia'],
 
-            'consciencia/conviccao' => $data['consciencia/conviccao'], 
-            'autocontrole/instintos' => $data['autocontrole/instintos'], 
+            'consciencia_conviccao' => $data['consciencia_conviccao'], 
+            'autocontrole_instintos' => $data['autocontrole_instintos'], 
             'coragem' => $data['coragem'],
                 
-            'humanidade' => $data['consciencia/conviccao'] + $data['autocontrole/instintos'], 
+            'humanidade' => $data['consciencia_conviccao'] + $data['autocontrole_instintos'], 
             'forca_de_vontade' => $data['coragem'],
             'pontos_de_sangue' => $data['pontos_de_sangue'], //adicionar função que calcula de acordo geração escolhida
 
@@ -114,19 +114,86 @@ class CharacterRepos implements ICharacterRepos{
         return $character;
     }
 
-    public function delete($id){
+    public function deleteCharacter($id){
 
         $delete = $this->_model->where('id', $id)->delete();
 
         return $delete;
     }
 
-    public function find($id){
+    public function findCharacter($id){
+
+        $character = $this->_model->find($id);
+        
+        return $character;
 
     }
 
-    public function update($data){
+    public function updateCharacter($id){
 
+        $data = $this->_request->all();
+        //dd($id);
+        $update = $this->_model->where('id', $id)->update([
+            'cronica' => $data['cronica'],
+            'geracao' => $data['geracao'],
+            'character_image' => $data['character_image'],
+
+            'forca' => $data['forca'],
+            'destreza' => $data['destreza'],
+            'vigor' => $data['vigor'],
+            'carisma' => $data['carisma'],
+            'manipulacao' => $data['manipulacao'],
+            'aparencia' => $data['aparencia'],
+            'percepcao' => $data['percepcao'],
+            'inteligencia' => $data['inteligencia'],
+            'raciocinio' => $data['raciocinio'],
+
+            'prontidao' => $data['prontidao'],
+            'esporte' => $data['esporte'],
+            'briga' => $data['briga'],
+            'esquiva' => $data['esquiva'], 
+            'empatia' => $data['empatia'],
+            'expressao' => $data['expressao'],
+            'intimidacao' => $data['intimidacao'],
+            'lideranca' => $data['lideranca'],
+            'manha' => $data['manha'],
+            'labia' => $data['labia'],
+
+            'empatia_com_animais' => $data['empatia_com_animais'],
+            'oficios' => $data['oficios'],
+            'conducao' => $data['conducao'],
+            'etiqueta' => $data['etiqueta'],
+            'armas_de_fogo' => $data['armas_de_fogo'],
+            'armas_brancas' => $data['armas_brancas'],
+            'performance' => $data['performance'],
+            'seguranca' => $data['seguranca'],
+            'furtividade' => $data['furtividade'],
+            'sobrevivencia' => $data['sobrevivencia'],
+
+            'academicos' => $data['academicos'],
+            'computador' => $data['computador'],
+            'financas' => $data['financas'],
+            'investigacao' => $data['investigacao'],
+            'direito' => $data['direito'],
+            'linguistica' => $data['linguistica'],
+            'medicina' => $data['medicina'],
+            'ocultismo' => $data['ocultismo'],
+            'politica' => $data['politica'],
+            'ciencia' => $data['ciencia'],
+
+            'consciencia_conviccao' => $data['consciencia_conviccao'], 
+            'autocontrole_instintos' => $data['autocontrole_instintos'], 
+            'coragem' => $data['coragem'],
+                
+            'humanidade' => $data['consciencia_conviccao'] + $data['autocontrole_instintos'], 
+            'forca_de_vontade' => $data['coragem'],
+            'pontos_de_sangue' => $data['pontos_de_sangue'], //adicionar função que calcula de acordo geração escolhida
+
+            'vitalidade' => 0,
+            'experiencia' => 0,
+        ]);
+
+        return $update;
     }
 
 }

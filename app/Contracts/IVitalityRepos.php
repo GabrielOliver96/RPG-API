@@ -2,9 +2,8 @@
 
 namespace App\Contracts;
 
-interface IDisciplineRepos{
+interface IVitalityRepos{
 
     public function store($characterId, $data);
-    public function findDisciplinesByCharacterId($id);
 
 }
