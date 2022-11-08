@@ -11,6 +11,6 @@ Route::group(['middleware' => ['AuthJwt']], function(){
 
     Route::get('/find-all-characters', [App\Http\Controllers\ControllersAPI\CharacterController::class, 'findAllCharacters']);
     Route::post('/create-character', [App\Http\Controllers\ControllersAPI\CharacterController::class, 'createCharacter']);
-    Route::delete('/delete-character/{id}', [App\Http\Controllers\ControllersAPI\CharacterController::class, 'deleteCharacter']);
+    Route::delete('/delete/{id}', [App\Http\Controllers\ControllersAPI\CharacterController::class, 'deleteCharacter']);
 
 });

@@ -49,12 +49,13 @@ class CharacterController extends Controller
 
         $payload = $this->_jwt->validateJwt($headerToken[1]);
 
+        
         if(!$payload){
 
             $response = false; //necessário estar logado.
             return $response;
         }
-        
+
         $createCharacter = $this->_repos->store($payload, $data);
 
         if(!$createCharacter){
@@ -62,14 +63,14 @@ class CharacterController extends Controller
             $response['error'] = 'Necessário estar logado.';
         }
 
-        $response['success'] = 'As informações básicas do seu personagem foram adicionadas com sucesso.';
+        $response['success'] = 'Personagem criado com sucesso.';
 
         return $response;
     }
 
     public function deleteCharacter($id){
 
-        $deleteCharacter = $this->_repos->delete($id);
+        $deleteCharacter = $this->_repos->deleteCharacter($id);
 
         if($deleteCharacter == 0){
 
