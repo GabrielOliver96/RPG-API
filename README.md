@@ -3,11 +3,9 @@
 
 ## Sobre o projeto
 
-Aplicação desenvolvida para a construção de um ambiente de rpg de mesa, para jogadores e narradores, com criação de fichas, e ambiente para narrativa como a criação de uma mesa narrativa, com tabuleiro para adiçaõ de grid e utilização de tokens para melhor imersão do jogo, 
+Aplicação web/api desenvolvida para a construção de um ambiente de rpg de mesa, para jogadores e narradores, podendo desta forma criar de fichas de personagens, ambiente para narrativa, como na criação de salas onde os jogadores poderão adicionar grids, imagens, áudios ambiente, e utilizar de tokens para melhor imersão no jogo. 
 
-## Sobre a api
-
-Api em desenvolvimento para a criação de fichas de personagens, para um futuro app mobile, assim facilitando os usuários na jogatina. 
+Plano inicial envolve primeiro a criação de um ambiente web, porém o desenvolvimento da API está sendo feita em conjunto, para que em um futuro próximo seja construido uma versão mobile.
 
 
 
