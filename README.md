@@ -1,5 +1,6 @@
-<h3 align="center">Aplicação web para RPG</a></h3>
+<h3 align="center">Aplicação web para RPG</h3>
 
+Conheça um pouco sobre o RPG de mesa clicando <a href="https://pt.wikipedia.org/wiki/Role-playing_game" target="_blank">AQUI</a>.
 
 ## Sobre o projeto
 
