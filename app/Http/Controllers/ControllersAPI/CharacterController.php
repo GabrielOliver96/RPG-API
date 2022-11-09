@@ -43,7 +43,7 @@ class CharacterController extends Controller
     
     public function createCharacter(){
         
-        $data = $_request->all();   
+        $data = $this->_request->all();   
 
         $headerToken = explode(' ', $this->_request->header('authorization')); 
 
@@ -57,13 +57,16 @@ class CharacterController extends Controller
         }
 
         $createCharacter = $this->_repos->store($payload, $data);
-
+        
         if(!$createCharacter){
 
             $response['error'] = 'Necessário estar logado.';
         }
 
-        $response['success'] = 'Personagem criado com sucesso.';
+        $response = [
+            'success' => 'Personagem criado com sucesso.',
+            'character' => $createCharacter
+        ];
 
         return $response;
     }
